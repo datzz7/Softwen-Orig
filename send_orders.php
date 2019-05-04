@@ -1,0 +1,78 @@
+<!--/*
+include 'config.php';
+
+if(isset($_POST['send_order'])
+{	 
+	 $sql_artists= "SELECT * FROM login l inner join availability_table a on a.id=l.id";
+	 $artist_result = $conn->query($sql_artists);
+
+	 echo "$artist_result";
+
+	 $sql = "SELECT  OrderNo,OrderDetails,DateOrdered,Quantity from orders";
+
+	 $result = $conn-> query($sql);
+
+	if ($result->num_rows > 0) {
+	    echo "<table><tr><th>OrderNo</th><th>OrderDetails</th><th>DateOrdered</th><th>Quantity</th></tr>";
+	    // output data of each row
+	    while($row = $result->fetch_assoc()) {
+	        echo "<tr><td>" . $row["OrderNo"]. "</td><td>" . $row["OrderDetails"]. "</td><td>". $row["DateOrdered"]. "</td><td> " . $row["Quantity"]  .  "</td></tr>";
+	    }
+	    echo "</table>";
+	} else {
+	    echo "0 results";
+	}
+
+	$conn->close();
+	}*/
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+ td,  th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+ tr:nth-child(even){background-color: #f2f2f2;}
+
+ tr:hover {background-color: #ddd;}
+
+ th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
+</head>
+<body>
+<?php
+include 'config.php';
+	 $sql = "SELECT  OrderNo,OrderDetails,DateOrdered,Quantity from orders";
+
+	 $result = $conn-> query($sql);
+
+	if ($result->num_rows > 0) {
+	    echo "<table><tr><th>OrderNo</th><th>OrderDetails</th><th>DateOrdered</th><th>Quantity</th></tr>";
+	    // output data of each row
+	    while($row = $result->fetch_assoc()) {
+	        echo "<tr><td>" . $row["OrderNo"]. "</td><td>" . $row["OrderDetails"]. "</td><td>". $row["DateOrdered"]. "</td><td> " . $row["Quantity"]  .  "</td></tr>";
+	    }
+	    echo "</table>";
+	} else {
+	    echo "0 results";
+	}
+$conn->close();
+?> 
+</body>
+</html>
